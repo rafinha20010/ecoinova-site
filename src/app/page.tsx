@@ -15,22 +15,22 @@ export default function EcoInovaLanding() {
 
   const valores = [
     {
-      icon: <Leaf className="w-12 h-12 text-green-600" />,
+      icon: <Leaf style={{ width: 48, height: 48, color: '#16a34a' }} />,
       titulo: "Sustentabilidade",
       desc: "Compromisso com o futuro do planeta através de energia limpa e renovável"
     },
     {
-      icon: <TrendingUp className="w-12 h-12 text-green-600" />,
+      icon: <TrendingUp style={{ width: 48, height: 48, color: '#16a34a' }} />,
       titulo: "Inovação",
       desc: "Tecnologia de ponta para maximizar a eficiência energética"
     },
     {
-      icon: <Shield className="w-12 h-12 text-green-600" />,
+      icon: <Shield style={{ width: 48, height: 48, color: '#16a34a' }} />,
       titulo: "Transparência",
       desc: "Processos claros e honestos em cada etapa do projeto"
     },
     {
-      icon: <DollarSign className="w-12 h-12 text-green-600" />,
+      icon: <DollarSign style={{ width: 48, height: 48, color: '#16a34a' }} />,
       titulo: "Custo-benefício",
       desc: "Soluções acessíveis sem comprometer a qualidade"
     }
@@ -71,51 +71,758 @@ export default function EcoInovaLanding() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
-        <nav className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Sun className={`w-8 h-8 ${isScrolled ? 'text-green-600' : 'text-white'}`} />
-              <span className={`text-2xl font-bold ${isScrolled ? 'text-gray-900' : 'text-white'}`}>
-                EcoInova
-              </span>
-            </div>
+    <>
+      <style jsx>{`
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+          line-height: 1.6;
+        }
+
+        .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+          position: fixed;
+          width: 100%;
+          z-index: 1000;
+          transition: all 0.3s ease;
+        }
+
+        .header-scrolled {
+          background: white;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 16px 24px;
+        }
+
+        .logo {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 24px;
+          font-weight: bold;
+          text-decoration: none;
+        }
+
+        .nav-links {
+          display: flex;
+          gap: 32px;
+          list-style: none;
+        }
+
+        .nav-links a {
+          text-decoration: none;
+          font-weight: 500;
+          transition: color 0.3s;
+        }
+
+        .mobile-menu-btn {
+          display: none;
+          background: none;
+          border: none;
+          cursor: pointer;
+        }
+
+        .mobile-menu {
+          display: none;
+          padding: 16px 0;
+        }
+
+        .mobile-menu.open {
+          display: block;
+        }
+
+        .mobile-menu a {
+          display: block;
+          padding: 8px 0;
+          text-decoration: none;
+          color: #374151;
+        }
+
+        /* Hero */
+        .hero {
+          position: relative;
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          background: linear-gradient(135deg, #16a34a 0%, #22c55e 50%, #10b981 100%);
+        }
+
+        .hero-overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-bg {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+        }
+
+        .hero-blob-1 {
+          position: absolute;
+          top: 80px;
+          right: 80px;
+          width: 384px;
+          height: 384px;
+          background: #fbbf24;
+          border-radius: 50%;
+          filter: blur(60px);
+          opacity: 0.2;
+          animation: pulse 3s ease-in-out infinite;
+        }
+
+        .hero-blob-2 {
+          position: absolute;
+          bottom: 80px;
+          left: 80px;
+          width: 384px;
+          height: 384px;
+          background: #86efac;
+          border-radius: 50%;
+          filter: blur(60px);
+          opacity: 0.2;
+          animation: pulse 3s ease-in-out infinite;
+          animation-delay: 1s;
+        }
+
+        @keyframes pulse {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.1); }
+        }
+
+        .hero-content {
+          position: relative;
+          z-index: 10;
+          text-align: center;
+          color: white;
+          max-width: 1200px;
+          padding: 0 24px;
+        }
+
+        .hero-title {
+          font-size: 64px;
+          font-weight: bold;
+          margin-bottom: 48px;
+        }
+
+        .manifesto-cards {
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+          max-width: 900px;
+          margin: 0 auto 48px;
+        }
+
+        .manifesto-card {
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
+          border-radius: 16px;
+          padding: 32px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .manifesto-card h2 {
+          font-size: 24px;
+          margin-bottom: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+        }
+
+        .manifesto-card p {
+          font-size: 20px;
+        }
+
+        .cta-button {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: white;
+          color: #16a34a;
+          padding: 16px 32px;
+          border-radius: 50px;
+          font-weight: bold;
+          font-size: 18px;
+          border: none;
+          cursor: pointer;
+          transition: all 0.3s;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button:hover {
+          background: #f0fdf4;
+          transform: scale(1.05);
+        }
+
+        /* História */
+        .historia-section {
+          padding: 96px 24px;
+          background: linear-gradient(to bottom, white, #f0fdf4);
+        }
+
+        .section-title {
+          text-align: center;
+          font-size: 48px;
+          font-weight: bold;
+          color: #111827;
+          margin-bottom: 16px;
+        }
+
+        .section-line {
+          width: 96px;
+          height: 4px;
+          background: #16a34a;
+          margin: 0 auto 48px;
+        }
+
+        .historia-text {
+          max-width: 900px;
+          margin: 0 auto 48px;
+          font-size: 20px;
+          color: #374151;
+          line-height: 1.8;
+          text-align: center;
+        }
+
+        .timeline {
+          position: relative;
+          max-width: 1000px;
+          margin: 0 auto;
+        }
+
+        .timeline-line {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          height: 100%;
+          width: 4px;
+          background: #16a34a;
+        }
+
+        .timeline-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 48px;
+          position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+          flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+          width: 50%;
+          padding: 0 32px;
+        }
+
+        .timeline-card {
+          background: white;
+          border-radius: 12px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          padding: 24px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-card {
+          text-align: left;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-card {
+          text-align: right;
+        }
+
+        .timeline-year {
+          display: inline-block;
+          background: #16a34a;
+          color: white;
+          padding: 8px 16px;
+          border-radius: 50px;
+          font-weight: bold;
+          margin-bottom: 12px;
+        }
+
+        .timeline-event {
+          color: #374151;
+          font-size: 18px;
+        }
+
+        .timeline-dot {
+          position: relative;
+          z-index: 10;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 48px;
+          height: 48px;
+          background: #16a34a;
+          border: 4px solid white;
+          border-radius: 50%;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-spacer {
+          width: 50%;
+        }
+
+        /* Valores */
+        .valores-section {
+          padding: 96px 24px;
+          background: white;
+        }
+
+        .valores-desc {
+          text-align: center;
+          font-size: 20px;
+          color: #4b5563;
+          max-width: 800px;
+          margin: 0 auto 48px;
+        }
+
+        .valores-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 32px;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .valor-card {
+          background: linear-gradient(135deg, #f0fdf4 0%, white 100%);
+          border-radius: 16px;
+          padding: 32px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s;
+          border: 1px solid #dcfce7;
+        }
+
+        .valor-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .valor-icon {
+          width: 80px;
+          height: 80px;
+          background: white;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 24px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s;
+        }
+
+        .valor-card:hover .valor-icon {
+          transform: scale(1.1);
+        }
+
+        .valor-titulo {
+          font-size: 24px;
+          font-weight: bold;
+          color: #111827;
+          margin-bottom: 12px;
+          text-align: center;
+        }
+
+        .valor-desc {
+          color: #4b5563;
+          text-align: center;
+          line-height: 1.6;
+        }
+
+        /* Equipe */
+        .equipe-section {
+          padding: 96px 24px;
+          background: linear-gradient(to bottom, #f0fdf4, white);
+        }
+
+        .equipe-desc {
+          text-align: center;
+          font-size: 20px;
+          color: #4b5563;
+          max-width: 800px;
+          margin: 0 auto 48px;
+        }
+
+        .equipe-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 32px;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .equipe-card {
+          background: white;
+          border-radius: 16px;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s;
+        }
+
+        .equipe-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .equipe-img-container {
+          position: relative;
+          height: 256px;
+          overflow: hidden;
+        }
+
+        .equipe-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s;
+        }
+
+        .equipe-card:hover .equipe-img {
+          transform: scale(1.1);
+        }
+
+        .equipe-img-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, #16a34a, transparent);
+          opacity: 0.6;
+        }
+
+        .equipe-info {
+          padding: 24px;
+        }
+
+        .equipe-nome {
+          font-size: 20px;
+          font-weight: bold;
+          color: #111827;
+          margin-bottom: 4px;
+        }
+
+        .equipe-cargo {
+          color: #16a34a;
+          font-weight: 600;
+          margin-bottom: 8px;
+        }
+
+        .equipe-bio {
+          color: #4b5563;
+          font-size: 14px;
+        }
+
+        /* CTA Final */
+        .cta-final {
+          padding: 96px 24px;
+          background: linear-gradient(135deg, #16a34a, #10b981);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .cta-final-bg {
+          position: absolute;
+          inset: 0;
+          opacity: 0.1;
+        }
+
+        .cta-final-blob-1 {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 384px;
+          height: 384px;
+          background: #fbbf24;
+          border-radius: 50%;
+          filter: blur(80px);
+        }
+
+        .cta-final-blob-2 {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 384px;
+          height: 384px;
+          background: #86efac;
+          border-radius: 50%;
+          filter: blur(80px);
+        }
+
+        .cta-final-content {
+          position: relative;
+          z-index: 10;
+          text-align: center;
+          color: white;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .cta-final-title {
+          font-size: 48px;
+          font-weight: bold;
+          margin-bottom: 24px;
+        }
+
+        .cta-final-subtitle {
+          font-size: 24px;
+          margin-bottom: 32px;
+          max-width: 900px;
+          margin-left: auto;
+          margin-right: auto;
+          opacity: 0.9;
+        }
+
+        .cta-buttons {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 16px;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 64px;
+        }
+
+        .cta-button-primary {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: white;
+          color: #16a34a;
+          padding: 20px 40px;
+          border-radius: 50px;
+          font-weight: bold;
+          font-size: 18px;
+          border: none;
+          cursor: pointer;
+          transition: all 0.3s;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button-primary:hover {
+          background: #f0fdf4;
+          transform: scale(1.05);
+        }
+
+        .cta-button-secondary {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: transparent;
+          color: white;
+          padding: 20px 40px;
+          border-radius: 50px;
+          font-weight: bold;
+          font-size: 18px;
+          border: 2px solid white;
+          cursor: pointer;
+          transition: all 0.3s;
+        }
+
+        .cta-button-secondary:hover {
+          background: white;
+          color: #16a34a;
+          transform: scale(1.05);
+        }
+
+        .stats-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 32px;
+          max-width: 900px;
+          margin: 0 auto;
+        }
+
+        .stat-item {
+          text-align: center;
+        }
+
+        .stat-number {
+          font-size: 48px;
+          font-weight: bold;
+          margin-bottom: 8px;
+        }
+
+        .stat-label {
+          font-size: 18px;
+          opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+          background: #111827;
+          color: white;
+          padding: 48px 24px;
+        }
+
+        .footer-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .footer-logo {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 24px;
+          font-weight: bold;
+        }
+
+        .footer-text {
+          text-align: center;
+        }
+
+        .footer-copyright {
+          color: #9ca3af;
+          margin-bottom: 8px;
+        }
+
+        .footer-tagline {
+          color: #6b7280;
+          font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+          .nav-links {
+            display: none;
+          }
+
+          .mobile-menu-btn {
+            display: block;
+          }
+
+          .hero-title {
+            font-size: 36px;
+          }
+
+          .manifesto-card h2 {
+            font-size: 20px;
+          }
+
+          .manifesto-card p {
+            font-size: 16px;
+          }
+
+          .section-title {
+            font-size: 32px;
+          }
+
+          .timeline-line {
+            left: 24px;
+          }
+
+          .timeline-item,
+          .timeline-item:nth-child(even) {
+            flex-direction: row;
+          }
+
+          .timeline-content {
+            width: calc(100% - 60px);
+            margin-left: 60px;
+            padding: 0;
+          }
+
+          .timeline-card {
+            text-align: left !important;
+          }
+
+          .timeline-dot {
+            position: absolute;
+            left: 0;
+          }
+
+          .timeline-spacer {
+            display: none;
+          }
+
+          .cta-final-title {
+            font-size: 32px;
+          }
+
+          .cta-final-subtitle {
+            font-size: 18px;
+          }
+
+          .cta-buttons {
+            flex-direction: column;
+          }
+
+          .footer-content {
+            flex-direction: column;
+            text-align: center;
+          }
+        }
+
+        @media (min-width: 769px) {
+          .footer-content {
+            flex-direction: row;
+            justify-content: space-between;
+          }
+
+          .footer-text {
+            text-align: right;
+          }
+        }
+      `}</style>
+
+      <div>
+        {/* Header */}
+        <header className={`header ${isScrolled ? 'header-scrolled' : ''}`}>
+          <nav className="nav">
+            <a href="#" className="logo">
+              <Sun style={{ width: 32, height: 32, color: isScrolled ? '#16a34a' : 'white' }} />
+              <span style={{ color: isScrolled ? '#111827' : 'white' }}>EcoInova</span>
+            </a>
             
-            <div className="hidden md:flex space-x-8">
+            <div className="nav-links">
               {['Manifesto', 'História', 'Valores', 'Equipe'].map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className={`font-medium transition-colors ${
-                    isScrolled ? 'text-gray-700 hover:text-green-600' : 'text-white hover:text-green-200'
-                  }`}
+                  style={{ color: isScrolled ? '#374151' : 'white' }}
                 >
                   {item}
                 </a>
               ))}
             </div>
 
-            <button
-              className="md:hidden"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
+            <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               {mobileMenuOpen ? (
-                <X className={isScrolled ? 'text-gray-900' : 'text-white'} />
+                <X style={{ width: 24, height: 24, color: isScrolled ? '#111827' : 'white' }} />
               ) : (
-                <Menu className={isScrolled ? 'text-gray-900' : 'text-white'} />
+                <Menu style={{ width: 24, height: 24, color: isScrolled ? '#111827' : 'white' }} />
               )}
             </button>
-          </div>
+          </nav>
 
           {mobileMenuOpen && (
-            <div className="md:hidden mt-4 pb-4">
+            <div className="mobile-menu open">
               {['Manifesto', 'História', 'Valores', 'Equipe'].map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className="block py-2 text-gray-700 hover:text-green-600"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item}
@@ -123,233 +830,189 @@ export default function EcoInovaLanding() {
               ))}
             </div>
           )}
-        </nav>
-      </header>
+        </header>
 
-      {/* Hero Section - Manifesto */}
-      <section id="manifesto" className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-600 via-green-500 to-emerald-600" />
-        <div className="absolute inset-0 bg-black opacity-20" />
-        
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 right-20 w-96 h-96 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" />
-          <div className="absolute bottom-20 left-20 w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '1s' }} />
-        </div>
+        {/* Hero Section - Manifesto */}
+        <section id="manifesto" className="hero">
+          <div className="hero-overlay" />
+          
+          <div className="hero-bg">
+            <div className="hero-blob-1" />
+            <div className="hero-blob-2" />
+          </div>
 
-        <div className="relative z-10 container mx-auto px-6 text-center text-white">
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 animate-fade-in">
-            Energia Limpa para Todos
-          </h1>
-          <div className="max-w-4xl mx-auto space-y-8">
-            <div className="bg-white bg-opacity-10 backdrop-blur-md rounded-2xl p-8 border border-white border-opacity-20">
-              <h2 className="text-2xl font-semibold mb-3 flex items-center justify-center gap-2">
-                <Sun className="w-8 h-8" />
-                Nossa Missão
-              </h2>
-              <p className="text-xl">
-                Democratizar o acesso à energia limpa no Brasil
-              </p>
-            </div>
+          <div className="hero-content">
+            <h1 className="hero-title">Energia Limpa para Todos</h1>
             
-            <div className="bg-white bg-opacity-10 backdrop-blur-md rounded-2xl p-8 border border-white border-opacity-20">
-              <h2 className="text-2xl font-semibold mb-3 flex items-center justify-center gap-2">
-                <TrendingUp className="w-8 h-8" />
-                Nossa Visão
-              </h2>
-              <p className="text-xl">
-                Ser líder em soluções de energia solar residencial até 2030
-              </p>
+            <div className="manifesto-cards">
+              <div className="manifesto-card">
+                <h2>
+                  <Sun style={{ width: 32, height: 32 }} />
+                  Nossa Missão
+                </h2>
+                <p>Democratizar o acesso à energia limpa no Brasil</p>
+              </div>
+              
+              <div className="manifesto-card">
+                <h2>
+                  <TrendingUp style={{ width: 32, height: 32 }} />
+                  Nossa Visão
+                </h2>
+                <p>Ser líder em soluções de energia solar residencial até 2030</p>
+              </div>
             </div>
+
+            <button className="cta-button">
+              Faça um Orçamento Gratuito
+              <ArrowRight style={{ width: 20, height: 20 }} />
+            </button>
           </div>
+        </section>
 
-          <button className="mt-12 bg-white text-green-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-green-50 transition-all transform hover:scale-105 shadow-2xl flex items-center gap-2 mx-auto">
-            Faça um Orçamento Gratuito
-            <ArrowRight className="w-5 h-5" />
-          </button>
-        </div>
-      </section>
+        {/* Nossa História */}
+        <section id="história" className="historia-section">
+          <div className="container">
+            <h2 className="section-title">Nossa História</h2>
+            <div className="section-line" />
 
-      {/* Nossa História */}
-      <section id="história" className="py-24 bg-gradient-to-b from-white to-green-50">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-gray-900 mb-4">Nossa História</h2>
-            <div className="w-24 h-1 bg-green-600 mx-auto" />
-          </div>
-
-          <div className="max-w-4xl mx-auto mb-12">
-            <p className="text-xl text-gray-700 leading-relaxed text-center">
+            <p className="historia-text">
               Fundada em 2020, a <strong>EcoInova</strong> nasceu do sonho de tornar a energia solar acessível para cada lar brasileiro. 
               Começamos com uma pequena equipe apaixonada por sustentabilidade e, desde então, já transformamos mais de 500 residências 
               e estabelecimentos comerciais em exemplos de eficiência energética. Nosso compromisso vai além da instalação: 
               construímos um futuro mais verde, um teto solar por vez.
             </p>
-          </div>
 
-          <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-green-600" />
-            
-            <div className="space-y-12">
+            <div className="timeline">
+              <div className="timeline-line" />
+              
               {timeline.map((item, idx) => (
-                <div key={idx} className={`flex items-center ${idx % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                  <div className="w-1/2 px-8">
-                    <div className={`bg-white rounded-xl shadow-lg p-6 ${idx % 2 === 0 ? 'text-right' : 'text-left'}`}>
-                      <span className="inline-block bg-green-600 text-white px-4 py-2 rounded-full font-bold mb-3">
-                        {item.ano}
-                      </span>
-                      <p className="text-gray-700 text-lg">{item.evento}</p>
+                <div key={idx} className="timeline-item">
+                  <div className="timeline-content">
+                    <div className="timeline-card">
+                      <span className="timeline-year">{item.ano}</span>
+                      <p className="timeline-event">{item.evento}</p>
                     </div>
                   </div>
                   
-                  <div className="relative z-10 flex items-center justify-center w-12 h-12 bg-green-600 border-4 border-white rounded-full shadow-lg">
-                    <CheckCircle className="w-6 h-6 text-white" />
+                  <div className="timeline-dot">
+                    <CheckCircle style={{ width: 24, height: 24, color: 'white' }} />
                   </div>
                   
-                  <div className="w-1/2" />
+                  <div className="timeline-spacer" />
                 </div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Valores */}
-      <section id="valores" className="py-24 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-gray-900 mb-4">Nossos Valores</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+        {/* Valores */}
+        <section id="valores" className="valores-section">
+          <div className="container">
+            <h2 className="section-title">Nossos Valores</h2>
+            <p className="valores-desc">
               Princípios que guiam cada decisão e projeto da EcoInova
             </p>
-            <div className="w-24 h-1 bg-green-600 mx-auto mt-4" />
-          </div>
+            <div className="section-line" />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {valores.map((valor, idx) => (
-              <div
-                key={idx}
-                className="group bg-gradient-to-br from-green-50 to-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-green-100"
-              >
-                <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-md group-hover:scale-110 transition-transform">
-                  {valor.icon}
+            <div className="valores-grid">
+              {valores.map((valor, idx) => (
+                <div key={idx} className="valor-card">
+                  <div className="valor-icon">{valor.icon}</div>
+                  <h3 className="valor-titulo">{valor.titulo}</h3>
+                  <p className="valor-desc">{valor.desc}</p>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3 text-center">
-                  {valor.titulo}
-                </h3>
-                <p className="text-gray-600 text-center leading-relaxed">
-                  {valor.desc}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Equipe */}
-      <section id="equipe" className="py-24 bg-gradient-to-b from-green-50 to-white">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-gray-900 mb-4">Conheça Nossa Equipe</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+        {/* Equipe */}
+        <section id="equipe" className="equipe-section">
+          <div className="container">
+            <h2 className="section-title">Conheça Nossa Equipe</h2>
+            <p className="equipe-desc">
               Especialistas apaixonados por transformar o futuro energético do Brasil
             </p>
-            <div className="w-24 h-1 bg-green-600 mx-auto mt-4" />
-          </div>
+            <div className="section-line" />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {equipe.map((membro, idx) => (
-              <div
-                key={idx}
-                className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-              >
-                <div className="relative overflow-hidden h-64">
-                  <img
-                    src={membro.img}
-                    alt={membro.nome}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-green-600 to-transparent opacity-60" />
+            <div className="equipe-grid">
+              {equipe.map((membro, idx) => (
+                <div key={idx} className="equipe-card">
+                  <div className="equipe-img-container">
+                    <img src={membro.img} alt={membro.nome} className="equipe-img" />
+                    <div className="equipe-img-overlay" />
+                  </div>
+                  <div className="equipe-info">
+                    <h3 className="equipe-nome">{membro.nome}</h3>
+                    <p className="equipe-cargo">{membro.cargo}</p>
+                    <p className="equipe-bio">{membro.bio}</p>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">
-                    {membro.nome}
-                  </h3>
-                  <p className="text-green-600 font-semibold mb-2">
-                    {membro.cargo}
-                  </p>
-                  <p className="text-gray-600 text-sm">
-                    {membro.bio}
-                  </p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Final */}
-      <section className="py-24 bg-gradient-to-br from-green-600 to-emerald-600 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-yellow-400 rounded-full filter blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-green-300 rounded-full filter blur-3xl" />
-        </div>
-        
-        <div className="container mx-auto px-6 relative z-10 text-center text-white">
-          <h2 className="text-5xl font-bold mb-6">
-            Pronto para Transformar sua Energia?
-          </h2>
-          <p className="text-2xl mb-8 max-w-3xl mx-auto opacity-90">
-            Junte-se a centenas de brasileiros que já reduziram suas contas de luz em até 95%
-          </p>
+        {/* CTA Final */}
+        <section className="cta-final">
+          <div className="cta-final-bg">
+            <div className="cta-final-blob-1" />
+            <div className="cta-final-blob-2" />
+          </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="bg-white text-green-600 px-10 py-5 rounded-full font-bold text-lg hover:bg-green-50 transition-all transform hover:scale-105 shadow-2xl flex items-center gap-2">
-              Solicitar Orçamento Gratuito
-              <ArrowRight className="w-5 h-5" />
-            </button>
-            <button className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-green-600 transition-all transform hover:scale-105 flex items-center gap-2">
-              <Users className="w-5 h-5" />
-              Falar com Especialista
-            </button>
-          </div>
+          <div className="cta-final-content">
+            <h2 className="cta-final-title">Pronto para Transformar sua Energia?</h2>
+            <p className="cta-final-subtitle">
+              Junte-se a centenas de brasileiros que já reduziram suas contas de luz em até 95%
+            </p>
+            
+            <div className="cta-buttons">
+              <button className="cta-button-primary">
+                Solicitar Orçamento Gratuito
+                <ArrowRight style={{ width: 20, height: 20 }} />
+              </button>
+              <button className="cta-button-secondary">
+                <Users style={{ width: 20, height: 20 }} />
+                Falar com Especialista
+              </button>
+            </div>
 
-          <div className="mt-16 grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="text-center">
-              <p className="text-5xl font-bold mb-2">500+</p>
-              <p className="text-lg opacity-90">Instalações Realizadas</p>
-            </div>
-            <div className="text-center">
-              <p className="text-5xl font-bold mb-2">95%</p>
-              <p className="text-lg opacity-90">Economia Média</p>
-            </div>
-            <div className="text-center">
-              <p className="text-5xl font-bold mb-2">4.9★</p>
-              <p className="text-lg opacity-90">Avaliação dos Clientes</p>
+            <div className="stats-grid">
+              <div className="stat-item">
+                <p className="stat-number">500+</p>
+                <p className="stat-label">Instalações Realizadas</p>
+              </div>
+              <div className="stat-item">
+                <p className="stat-number">95%</p>
+                <p className="stat-label">Economia Média</p>
+              </div>
+              <div className="stat-item">
+                <p className="stat-number">4.9★</p>
+                <p className="stat-label">Avaliação dos Clientes</p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <Sun className="w-8 h-8 text-green-400" />
-              <span className="text-2xl font-bold">EcoInova Ltda.</span>
+        {/* Footer */}
+        <footer className="footer">
+          <div className="footer-content">
+            <div className="footer-logo">
+              <Sun style={{ width: 32, height: 32, color: '#4ade80' }} />
+              <span>EcoInova Ltda.</span>
             </div>
             
-            <div className="text-center md:text-right">
-              <p className="text-gray-400 mb-2">
+            <div className="footer-text">
+              <p className="footer-copyright">
                 © 2024 EcoInova. Todos os direitos reservados.
               </p>
-              <p className="text-gray-500 text-sm">
+              <p className="footer-tagline">
                 Democratizando o acesso à energia limpa no Brasil
               </p>
             </div>
           </div>
-        </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
+    </>
   );
 }
