@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { Sun, Leaf, TrendingUp, DollarSign, Shield, Menu, X, ArrowRight, CheckCircle, Users } from 'lucide-react';
 
